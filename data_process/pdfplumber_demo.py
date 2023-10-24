@@ -177,7 +177,7 @@ def process_file(file_path):
         print('start ', file_path)
         processor = PDFProcessor(file_path)
         processor.process_pdf()
-        save_path = '../alltxt3/' + file_path.split('/')[-1].replace('.pdf', '.txt')
+        save_path = '../data/' + file_path.split('/')[-1].replace('.pdf', '.txt')
         processor.save_all_text(save_path)
         print('finish ', save_path)
     except:
@@ -189,7 +189,7 @@ def process_file(file_path):
 # file_paths = sorted(file_paths, reverse=True)
 # print(file_paths)
 
-process_file("../allpdf/初赛训练数据集.pdf")
+process_file("../data/初赛训练数据集.pdf")
 # with Pool(processes=15) as pool:
 #     results = pool.map(process_file, file_paths)
 
