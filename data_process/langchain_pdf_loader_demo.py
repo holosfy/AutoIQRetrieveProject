@@ -11,7 +11,7 @@ class RapidOCRPDFLoader(UnstructuredFileLoader):
             import numpy as np
             ocr = RapidOCR()
             doc = fitz.open(filepath)
-            resp = ""
+            resp = []
 
             b_unit = tqdm.tqdm(total=doc.page_count, desc="RapidOCRPDFLoader context page index: 0")
             for i, page in enumerate(doc):
@@ -22,7 +22,7 @@ class RapidOCRPDFLoader(UnstructuredFileLoader):
                 b_unit.refresh()
                 # TODO: 依据文本与图片顺序调整处理方式
                 text = page.get_text("")
-                resp += text + "\n"
+                resp.append(text)
 
                 img_list = page.get_images()
                 for img in img_list:
@@ -31,15 +31,20 @@ class RapidOCRPDFLoader(UnstructuredFileLoader):
                     result, _ = ocr(img_array)
                     if result:
                         ocr_result = [line[1] for line in result]
-                        resp += "\n".join(ocr_result)
+                        resp = resp+ocr_result
 
                 # 更新进度
                 b_unit.update(1)
             return resp
 
         text = pdf2text(self.file_path)
-        from unstructured.partition.text import partition_text
-        return partition_text(text=text, **self.unstructured_kwargs)
+        # from unstructured.partition.text import partition_text
+        # return partition_text(text=text, **self.unstructured_kwargs)
+        print(text)
+        with open("../data/test_pdf2text.text", "w", encoding="utf-8") as f:
+           f.write('\n'.join(text))
+
+        return text
 
 
 if __name__ == "__main__":
