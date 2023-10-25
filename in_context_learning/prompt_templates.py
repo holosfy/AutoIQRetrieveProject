@@ -5,7 +5,7 @@
 @Date : 2023/10/25
 """
 from langchain.prompts import PromptTemplate, FewShotPromptTemplate
-from in_context_learning.lcs_length_selector import LCSLengthExampleSelector
+from lcs_length_selector import LCSLengthExampleSelector
 
 example_prompt = PromptTemplate(
     input_variables=["input", "output"],

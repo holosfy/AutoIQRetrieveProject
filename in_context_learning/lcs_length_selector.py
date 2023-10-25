@@ -37,17 +37,17 @@ class LCSLengthExampleSelector(BaseExampleSelector, BaseModel):
 
     @root_validator(pre=True)
     def check_dependencies(cls, values: Dict) -> Dict:
-        """Check that valid dependencies exist."""
-        try:
-            from nltk.translate.bleu_score import (  # noqa: F401
-                SmoothingFunction,
-                sentence_bleu,
-            )
-        except ImportError as e:
-            raise ImportError(
-                "Not all the correct dependencies for this ExampleSelect exist."
-                "Please install nltk with `pip install nltk`."
-            ) from e
+        # """Check that valid dependencies exist."""
+        # try:
+        #     from nltk.translate.bleu_score import (  # noqa: F401
+        #         SmoothingFunction,
+        #         sentence_bleu,
+        #     )
+        # except ImportError as e:
+        #     raise ImportError(
+        #         "Not all the correct dependencies for this ExampleSelect exist."
+        #         "Please install nltk with `pip install nltk`."
+        #     ) from e
 
         return values
 

@@ -1,6 +1,6 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation import GenerationConfig
-from in_context_learning.prompt_templates import dynamic_prompt
+from prompt_templates import dynamic_prompt
 
 # Model names: "Qwen/Qwen-7B", "Qwen/Qwen-14B"
 model_dir = "../Qwen-7B"
@@ -52,5 +52,5 @@ for item in l:
     item["answer_1"] = answer
     result.append(item)
 
-with open("test_v1_qwen7bchat.json", "w", encoding="utf-8") as fo:
+with open("../data/test_v1_qwen7bchat_icl.json", "w", encoding="utf-8") as fo:
     json.dump(result, fo, ensure_ascii=False)
